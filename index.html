@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>長唄・義太夫・清元・新内・常盤津 他 あてクイズ</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700&display=swap">
+<style>
+:root{--bg:#e8ecf2;--fg:#1c2540;--sub:#55607a;--card:#f7f9fc;--line:#b9c2d3;--gold:#8a6a1c;--red:#d1202a;--ok:#2f6b4f;--ng:#a8481c;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171e33;--fg:#eceff6;--sub:#a3adc6;--card:#212a45;--line:#3a4669;--gold:#d2ad55;--red:#ff5b54;--ok:#6fbf95;--ng:#e08b5c}}
+:root[data-theme="dark"]{--bg:#171e33;--fg:#eceff6;--sub:#a3adc6;--card:#212a45;--line:#3a4669;--gold:#d2ad55;--red:#ff5b54;--ok:#6fbf95;--ng:#e08b5c}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:"Shippori Mincho","Hiragino Mincho ProN","Yu Mincho",serif;line-height:1.8}
+.curtain{height:10px;background:linear-gradient(90deg,#1b1b1b 0 33.3%,#c4622d 33.3% 66.6%,#3f7a5a 66.6%)}
+main{max-width:560px;margin:0 auto;padding:20px 18px 40px}
+h1{font-size:1.5rem;margin:8px 0 4px;letter-spacing:.08em}
+.sub{color:var(--sub);font-size:.9rem;margin:0 0 20px}
+.bar{display:flex;justify-content:space-between;color:var(--sub);font-size:.9rem;border-bottom:1px solid var(--line);padding-bottom:6px}
+.clue{--accent:var(--gold);position:relative;background:linear-gradient(135deg,var(--card) 0%,color-mix(in srgb,var(--accent) 10%,var(--card)) 100%);border:2px solid var(--accent);border-radius:4px;padding:26px 22px 22px;margin:18px 0 16px;min-height:130px;box-shadow:0 4px 14px rgba(0,0,0,.12);transition:border-color .2s,background .2s}
+.clue::before,.clue::after{content:"";position:absolute;width:22px;height:22px;border:3px solid var(--accent)}
+.clue::before{top:-4px;left:-4px;border-right:none;border-bottom:none}
+.clue::after{bottom:-4px;right:-4px;border-left:none;border-top:none}
+.clue small{color:var(--accent)}
+.clue.k-ji{--accent:#b3335a}
+.clue.k-scene{--accent:#2f7a63}
+.clue.k-yurai{--accent:#3a5fb0}
+.clue.k-feature{--accent:var(--gold)}
+.clue.k-form{--accent:#7a4fab}
+.clue.k-inst{--accent:#b06a2c}
+.clue small{display:block;margin-bottom:6px;font-weight:700}
+.clue p{margin:0;font-size:1.5rem;font-weight:700;line-height:1.45}
+button{font:inherit;color:inherit;cursor:pointer}
+.opts{display:grid;gap:10px}
+.opt{position:relative;background:linear-gradient(180deg,var(--card) 0%,color-mix(in srgb,var(--gold) 6%,var(--card)) 100%);border:2px solid var(--line);border-radius:3px;padding:13px 18px 13px 34px;text-align:left;font-size:1.15rem;font-weight:700;min-height:50px;letter-spacing:.03em;box-shadow:0 2px 6px rgba(0,0,0,.08);transition:transform .12s,box-shadow .12s}
+.opt::before{content:"◆";position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--gold);font-size:.75em}
+.opt:hover:not(:disabled){border-color:var(--gold);transform:translateY(-1px);box-shadow:0 4px 10px rgba(0,0,0,.15)}
+.opt.ok{border-color:var(--ok);background:linear-gradient(180deg,color-mix(in srgb,var(--ok) 28%,var(--card)) 0%,color-mix(in srgb,var(--ok) 14%,var(--card)) 100%);box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 35%,transparent)}
+.opt.ng{border-color:var(--ng);background:linear-gradient(180deg,color-mix(in srgb,var(--ng) 28%,var(--card)) 0%,color-mix(in srgb,var(--ng) 14%,var(--card)) 100%)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.note{margin-top:16px;color:var(--sub);font-size:1.2rem;min-height:3.4em}
+.next{margin-top:8px;background:var(--fg);color:var(--bg);border:0;padding:12px 24px;min-height:48px}
+.big{font-size:2.6rem;font-weight:700;margin:10px 0}
+.mark{position:fixed;left:50%;top:38%;transform:translate(-50%,-50%);font-size:9rem;line-height:1;color:var(--red);pointer-events:none;opacity:0;z-index:10}
+.mark.show{animation:pop 1.1s ease-out}
+@keyframes pop{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}20%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1)}}
+@media (prefers-reduced-motion:reduce){.mark.show{animation:none;opacity:1}}
+.rvt{font-size:1.1rem;margin:22px 0 6px;letter-spacing:.06em}
+.rv{background:var(--card);border:1px solid var(--line);padding:10px 14px;margin:10px 0;font-size:.95rem}
+.rvh{font-weight:700}
+.rv.ok .rvh{color:var(--red)}
+.rv.ng .rvh{color:var(--ng)}
+.rvc,.rvy{color:var(--sub);font-size:1.1rem}
+.rv a{display:inline-block;margin-top:4px;color:var(--fg);text-decoration:underline;min-height:24px}
+.hide{display:none}
+</style>
+</head>
+<body>
+<div class="curtain"></div>
+<div class="mark" id="mark" aria-hidden="true">◎</div>
+<main>
+<h1>唄あてクイズ</h1>
+<p class="sub">長唄・端唄・小唄・都々逸・活惚・常盤津・清元・新内・義太夫・木遣り・相撲甚句・大薩摩。詞章や説明から、曲名や種類を当てましょう。</p>
+<section id="game">
+  <div class="bar"><span id="no"></span><span id="sc"></span></div>
+  <div class="clue" id="clueBox"><small id="kind"></small><p id="txt"></p></div>
+    <div class="opts" id="opts"></div>
+  <div class="note" id="note" aria-live="polite"></div>
+  <button class="next hide" id="next">次へ</button>
+</section>
+<section id="end" class="hide">
+  <div class="clue"><small>結果</small><p class="big" id="final"></p><p id="msg"></p></div>
+  <h2 class="rvt">答え合わせ</h2>
+  <div id="review"></div>
+  <button class="next" id="again">もう一度</button>
+</section>
+</main>
+<script>
+var G=["長唄","端唄","小唄","都々逸","活惚","常盤津","木遣り","相撲甚句","大薩摩","清元","新内","義太夫"];
+var Q=[
+{a:"勧進帳",k:"詞章の一節",t:"旅の衣は篠懸の",n:"安宅の関で弁慶が義経を守る物語。歌舞伎十八番の一つで、松羽目物です。"},
+{a:"京鹿子娘道成寺",k:"詞章の一節",t:"花の外には松ばかり",n:"道成寺の鐘の伝説を題材にした女形の大曲の舞踊です。"},
+{a:"藤娘",k:"詞章の一節",t:"若紫に十返りの花",n:"藤の枝を肩にした娘の姿で知られる、大津絵の藤娘を題材にした舞踊です。"},
+{a:"鷺娘",k:"詞章の一節",t:"妄執の雲晴れやらぬ朧夜の",n:"白い衣装の娘が鷺の精として舞う、雪の場面が名高い舞踊です。"},
+{a:"越後獅子",k:"場面",t:"越後から来た旅芸人の少年が、獅子の面をつけて街で芸を見せる。",n:"角兵衛獅子と呼ばれた越後の旅芸人を描いた舞踊曲です。"},
+{a:"鏡獅子",k:"場面",t:"御殿の小姓が祝いの舞を踊るうち、獅子の精が乗り移る。",n:"正式には「春興鏡獅子」。小姓の弥生が獅子の精に変わる舞踊です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"三千世界の鴉を殺し ぬしと朝寝がしてみたい",n:"七・七・七・五の二十六文字で詠む都々逸です。高杉晋作の作と伝わります。"},
+{a:"都々逸",o:G,k:"形式",t:"七・七・七・五の二十六文字で、恋や世相を詠む。",n:"都々逸は三味線に乗せて唄う、この定型の俗曲です。"},
+{a:"端唄",o:G,k:"唄の一節",t:"梅は咲いたか 桜はまだかいな",n:"端唄の「梅は咲いたか」です。"},
+{a:"端唄",o:G,k:"唄の一節",t:"奴さん どちらへ行く",n:"端唄の「奴さん」です。"},
+{a:"端唄",o:G,k:"特徴",t:"江戸後期に流行した、三味線に合わせて唄う短い歌謡。のちに小唄のもとになった。",n:"端唄は、長唄に対して短い小品の唄です。"},
+{a:"小唄",o:G,k:"特徴",t:"端唄から生まれ、座敷で三味線一挺に合わせて、短く粋に唄う。",n:"小唄は幕末から明治にかけて広まった座敷唄です。"},
+{a:"活惚",o:G,k:"唄の一節",t:"かっぽれ かっぽれ 甘茶でかっぽれ",n:"活惚は、宴席や寄席で親しまれた陽気な唄と踊りです。"},
+{a:"長唄",o:G,k:"特徴",t:"歌舞伎の舞踊の伴奏として発展した、三味線と唄と囃子の音楽。",n:"勧進帳や京鹿子娘道成寺も長唄の曲です。"},
+{a:"勧進帳",k:"詞章の一節",t:"鳴るは滝の水 日は照るとも絶えずとうたり",n:"弁慶が舞う場面で唄われる、勧進帳の名高い一節です。"},
+{a:"勧進帳",k:"場面",t:"関守の疑いをそらすため、家来が主君を杖で打つ。",n:"弁慶が義経を金剛杖で打つ、勧進帳の山場です。"},
+{a:"京鹿子娘道成寺",k:"場面",t:"鐘の供養の場に、白拍子の花子が現れて舞う。やがて正体が明かされる。",n:"白拍子花子は、道成寺の鐘にまつわる伝説の女の化身です。"},
+{a:"藤娘",k:"場面",t:"藤の枝を肩にかついだ娘が、恋する心を踊りで見せる。",n:"藤の花の枝を手にした姿が、この曲の象徴です。"},
+{a:"鏡獅子",k:"由来",t:"明治二十六年に九代目市川團十郎が初演した、獅子の舞踊。",n:"正式名は「春興鏡獅子」。歌舞伎舞踊の代表作です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"惚れて通えば千里も一里 逢わずに帰ればまた千里",n:"恋の道のりを詠んだ、都々逸の代表的な一首です。"},
+{a:"活惚",o:G,k:"特徴",t:"住吉踊りが元になったとされ、宴席や寄席で陽気に踊られた。",n:"活惚は「かっぽれ」と読みます。"},
+{a:"連獅子",k:"場面",t:"親獅子が、我が子の獅子を谷底へ突き落とす。",n:"「獅子の子落とし」の言い伝えを描く舞踊です。"},
+{a:"連獅子",k:"由来",t:"能の「石橋」をもとにした、親子の獅子が長い毛を振って舞う松羽目物。",n:"連獅子は歌舞伎舞踊を代表する長唄の曲です。"},
+{a:"船弁慶",k:"場面",t:"静御前が別れの舞を舞い、のちに船の上で平知盛の亡霊が現れる。",n:"能の「船弁慶」をもとにした松羽目物です。"},
+{a:"京鹿子娘道成寺",k:"詞章の一節",t:"恋の手習い つい見習いて",n:"京鹿子娘道成寺の「恋の手習い」の場面の一節です。"},
+{a:"鏡獅子",k:"場面",t:"獅子の精が現れて、胡蝶の精たちと戯れて舞う。",n:"春興鏡獅子の後半で、獅子が蝶と戯れる場面です。"},
+{a:"長唄",o:G,k:"楽器",t:"唄と細棹の三味線に、笛や鼓などの囃子が加わって演奏する。",n:"長唄は細棹の三味線を用います。"},
+{a:"長唄",o:G,k:"特徴",t:"江戸で発展し、歌舞伎の舞踊や舞台の音楽として演奏されてきた。",n:"長唄は歌舞伎と深く結びついた音楽です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"恋に焦がれて鳴く蝉よりも 鳴かぬ蛍が身を焦がす",n:"声に出さない恋心を蛍にたとえた、都々逸の名句です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"惚れた数から振られた数を 引けば女房が残るだけ",n:"ユーモアの効いた、有名な都々逸です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"信州信濃の新蕎麦よりも わたしゃあなたのそばがいい",n:"「そば」の掛けことばが楽しい都々逸です。"},
+{a:"都々逸",o:G,k:"由来",t:"江戸末期、寄席芸人の扇歌が広めたとされる、七七七五の唄。",n:"都々逸坊扇歌が、寄席で都々逸を広めたと伝えられます。"},
+{a:"鷺娘",k:"場面",t:"白無垢の娘が、雪の中で、叶わぬ恋の苦しみを踊る。",n:"鷺の精となった娘の姿を描く、雪の場面が名高い舞踊です。"},
+{a:"越後獅子",k:"由来",t:"「角兵衛獅子」と呼ばれた旅芸人を題材にした舞踊。",n:"越後獅子は、越後から来た旅芸人の姿を描きます。"},
+{a:"勧進帳",k:"場面",t:"関守の鋭い問いに、山伏姿の弁慶が、よどみなく答えていく。",n:"「山伏問答」と呼ばれる、勧進帳の見どころです。"},
+{a:"勧進帳",k:"由来",t:"能の「安宅」をもとにした、歌舞伎十八番の一つ。",n:"勧進帳は松羽目物の代表作です。"},
+{a:"勧進帳",k:"場面",t:"白紙の巻物を、もっともらしく声高に読み上げてみせる。",n:"弁慶が白紙の巻物を勧進帳として読み上げる場面です。"},
+{a:"京鹿子娘道成寺",k:"場面",t:"花笠や手ぬぐい、鞠や鈴太鼓を使い、次々に踊りを変えていく。",n:"一人の女形が、いくつもの踊りを見せる大曲です。"},
+{a:"藤娘",k:"由来",t:"大津絵に描かれた題材をもとにした、藤の枝を持つ娘の舞踊。",n:"藤娘は、大津絵の藤娘から生まれた舞踊です。"},
+{a:"藤娘",k:"詞章の一節",t:"花を咲かせし松の藤波",n:"「若紫に十返りの花」に続く、藤娘の一節です。"},
+{a:"連獅子",k:"場面",t:"途中で、浄土宗と法華宗の僧が言い争う場面がはさまる。",n:"「宗論」と呼ばれる、連獅子の間狂言です。"},
+{a:"船弁慶",k:"由来",t:"前半は白拍子の静御前、後半は亡霊の平知盛を、同じ役者が踊り分ける。",n:"船弁慶は、能の演目をもとにした松羽目物です。"},
+{a:"鏡獅子",k:"場面",t:"江戸城の大奥で、鏡開きの余興に、小姓が舞い始める。",n:"小姓の弥生が、やがて獅子の精に変わります。"},
+{a:"端唄",o:G,k:"唄の一節",t:"柳ゃなよなよ 風次第",n:"端唄「梅は咲いたか」の続きの一節です。"},
+{a:"端唄",o:G,k:"唄の一節",t:"山吹ゃ浅くも 名にめでる",n:"端唄「梅は咲いたか」の一節です。"},
+{a:"端唄",o:G,k:"特徴",t:"長唄や浄瑠璃に比べて短い、三味線歌曲の小品。座敷や庶民の間で親しまれた。",n:"端唄は、短い小品の唄です。"},
+{a:"小唄",o:G,k:"特徴",t:"芸者や旦那衆が座敷で楽しんだ、短くて粋な三味線の唄。",n:"小唄は、座敷で楽しまれた粋な唄です。"},
+{a:"小唄",o:G,k:"特徴",t:"「江戸小唄」とも呼ばれ、端唄や俗曲の流れから、明治以降に広まった。",n:"小唄は、端唄から生まれた座敷唄です。"},
+{a:"活惚",o:G,k:"特徴",t:"「かっぽれ、かっぽれ」と囃しながら踊る、陽気な唄と踊り。",n:"活惚は、宴席や寄席で親しまれました。"},
+{a:"都々逸",o:G,k:"由来",t:"名古屋で唄われた神戸節が源流とされ、のち江戸で定型の唄となった。",n:"都々逸は、神戸節を源流とすると言われます。"},
+{a:"戻り駕",k:"場面",t:"京都嶋原から江戸へ帰る二人の駕籠かきが、道中の思い出を踊ってみせる。",n:"常盤津の代表作「戻り駕」の場面です。"},
+{a:"戻り駕",k:"由来",t:"駕籠かきの浪速と吾妻が、それぞれ得意の芸を見せ合う舞踊。",n:"常盤津の「戻り駕」は、軽妙な掛け合いが見どころです。"},
+{a:"積恋雪関扉",k:"場面",t:"逢坂の関の番人が、実は大伴黒主で、桜の精と対峙する。",n:"常盤津の名作「関の扉」の一場面です。"},
+{a:"靱猿",k:"場面",t:"大名が猿曳きの猿を欲しがり、猿回しの親子が涙ながらに別れようとする。",n:"常盤津の「靱猿」は、猿と大名のやりとりが見どころです。"},
+{a:"常盤津",o:G,k:"特徴",t:"太い声で語るような口調が特徴の、豊後節から分かれた浄瑠璃の一つ。",n:"常盤津節は、常盤津文字太夫が始めた浄瑠璃です。"},
+{a:"常盤津",o:G,k:"特徴",t:"歌舞伎舞踊の伴奏に多く使われ、長唄と合わせて演奏されることもある。",n:"常盤津は、舞踊の伴奏として長く用いられてきました。"},
+{a:"常盤津",o:G,k:"由来",t:"江戸中期、豊後節の弾圧のあと、常盤津文字太夫が興した浄瑠璃。",n:"常盤津は豊後節の系統から生まれた浄瑠璃です。"},
+{a:"木遣り",o:G,k:"特徴",t:"祭りや棒締め、地固めなど、力を合わせて仕事をする際に唄われる作業唄。",n:"木遣りは、重い木材や物を大勢で運ぶ際に唄われました。"},
+{a:"木遣り",o:G,k:"由来",t:"火消しの纏持ちが唄ったことでも知られ、江戸の祭りや式典でも唄われる。",n:"江戸の火消しの木遣りは、今も祭りなどで唄われています。"},
+{a:"木遣り",o:G,k:"特徴",t:"音頭を取る一人に続いて、大勢が声をそろえて唄う、掛け合いの形が多い。",n:"木遣りは、掛け合いで唄われることが多い唄です。"},
+{a:"相撲甚句",o:G,k:"特徴",t:"相撲部屋の力士たちが、七五調の唄を輪になって唄い上げる。",n:"相撲甚句は、相撲にまつわる伝統的な唄です。"},
+{a:"相撲甚句",o:G,k:"特徴",t:"一人が唄い出し、周りの力士が声を合わせて唱和する形が多い。",n:"相撲甚句は、力士による掛け合いの唄です。"},
+{a:"相撲甚句",o:G,k:"由来",t:"巡業先の余興として披露され、相撲や郷土をたたえる歌詞が多い。",n:"相撲甚句は、巡業の余興として発展してきました。"},
+{a:"大薩摩",o:G,k:"特徴",t:"太い撥さばきと大きな声で語る、荒事の芝居によく用いられる浄瑠璃。",n:"大薩摩は、荒事の場面を引き立てる浄瑠璃です。"},
+{a:"大薩摩",o:G,k:"由来",t:"薩摩浄雲の系統から生まれ、のちに長唄に取り込まれて演奏されることが多い。",n:"大薩摩節は、長唄の中に組み入れられて残っています。"},
+{a:"大薩摩",o:G,k:"場面",t:"荒々しい武将や鬼などが登場する場面で、勇壮な調子で演奏される。",n:"大薩摩は、荒事らしい力強い場面に合う音楽です。"},
+{a:"保名",k:"場面",t:"恋人を失った安倍保名が、心を乱し、菜の花畑をさまよい歩く。",n:"清元の「保名」は、狂乱の情を描く舞踊です。"},
+{a:"道行旅路の花婿",k:"場面",t:"祇園一力茶屋から、おかると勘平が、忍びながら道を急ぐ。",n:"清元の「落人」とも呼ばれる、忠臣蔵の道行の場です。"},
+{a:"隅田川",k:"場面",t:"人買いにさらわれた我が子を探す母親が、隅田川のほとりで我が子の死を知る。",n:"清元の「隅田川」は、能の演目をもとにした悲しい物語です。"},
+{a:"清元",o:G,k:"特徴",t:"高く澄んだ美しい旋律が特徴で、豊後節の系統から分かれた浄瑠璃の一つ。",n:"清元節は、清元延寿太夫が始めた浄瑠璃です。"},
+{a:"清元",o:G,k:"由来",t:"常盤津から分かれ、江戸後期に清元延寿太夫が興した浄瑠璃。",n:"清元は、常盤津と同じ豊後節の流れを引いています。"},
+{a:"清元",o:G,k:"特徴",t:"艶やかで技巧的な唄い方が特徴で、舞踊の伴奏として今も演奏される。",n:"清元は、繊細で美しい旋律が持ち味です。"},
+{a:"明烏夢泡雪",k:"場面",t:"吉原に売られた浦里と、恋仲の時次郎が、雪の中を心中へと向かう。",n:"新内の代表作「明烏」の一場面です。"},
+{a:"新内",o:G,k:"特徴",t:"哀切な旋律が特徴で、二人一組で街を歩きながら唄う「新内流し」でも知られる。",n:"新内は、悲恋を描く演目が多い浄瑠璃です。"},
+{a:"新内",o:G,k:"由来",t:"鶴賀若狭掾の系統から分かれ、鶴賀新内が広めたとされる浄瑠璃。",n:"新内節は、鶴賀新内の名にちなみます。"},
+{a:"新内",o:G,k:"特徴",t:"心中物や悲恋物を得意とし、太夫の高い声と、三味線の哀調が持ち味。",n:"新内は、心中物の名作を多く伝えています。"},
+{a:"寺子屋",k:"場面",t:"寺子屋の師匠が、身代わりに我が子の首を差し出し、密かに主君の子を守る。",n:"義太夫の名作「寺子屋」の場面です。菅原伝授手習鑑の一段です。"},
+{a:"仮名手本忠臣蔵",k:"場面",t:"高師直の屋敷で、塩谷判官が刀を抜き、家来がとりすがって止める。",n:"義太夫「仮名手本忠臣蔵」の「判官切腹」に至る場面です。"},
+{a:"一谷嫩軍記",k:"場面",t:"熊谷直実が、平敦盛の身代わりに、我が子小次郎の首を討ったと明かす。",n:"義太夫「一谷嫩軍記」の「熊谷陣屋」の場面です。"},
+{a:"義太夫",o:G,k:"特徴",t:"太い声と重厚な語りで物語を伝える、竹本義太夫が始めた浄瑠璃。",n:"義太夫節は、人形浄瑠璃文楽の音楽として今も伝わります。"},
+{a:"義太夫",o:G,k:"由来",t:"竹本義太夫が大坂で興し、近松門左衛門らの作品を語り伝えた浄瑠璃。",n:"義太夫は「竹本」とも呼ばれます。"},
+{a:"助六",k:"場面",t:"江戸随一の伊達男、花川戸助六が、吉原仲之町で兄弟の敵を探る。",n:"歌舞伎の名作「助六」に伴う長唄です。"},
+{a:"汐汲",k:"場面",t:"松風の霊が、汐を汲む海女の姿で現れ、在原行平を偲んで舞う。",n:"能の「松風」を題材にした長唄舞踊です。"},
+{a:"元禄花見踊",k:"場面",t:"元禄風の装いの町人たちが、上野の花見で賑やかに踊る。",n:"明治期に作られた、華やかな花見の長唄舞踊です。"},
+{a:"供奴",k:"場面",t:"主人を待つ間、酔った奴が、身振り面白く踊ってみせる。",n:"長唄の「供奴」は、奴の滑稽な踊りが見どころです。"},
+{a:"五郎",k:"場面",t:"荒々しい五郎時致が、大磯の廓で恋人にひとときの情を見せる。",n:"曽我五郎を題材にした、荒事風の長唄舞踊です。"},
+{a:"曽根崎心中",k:"場面",t:"徳兵衛とお初が、曽根崎の森で、共に死を選ぶ。",n:"近松門左衛門作の義太夫の名作です。"},
+{a:"菅原伝授手習鑑",k:"場面",t:"車を挟んで、松王丸・梅王丸・桜丸の三兄弟が、争いを繰り広げる。",n:"義太夫「車引」の場面です。菅原伝授手習鑑の一段です。"},
+{a:"神田祭",k:"場面",t:"神田祭の日、鳶頭と芸者が、祭りの賑わいを浮き立つように踊る。",n:"清元の「神田祭」は、祭りの華やかさを描く舞踊です。"},
+{a:"廓文章",k:"場面",t:"落ちぶれた伊左衛門が、紙衣を着て、恋人の夕霧のもとを訪れる。",n:"常盤津「廓文章（吉田屋）」の場面です。"},
+{a:"蘭蝶",k:"場面",t:"妻を裏切り、遊女に通う蘭蝶が、身を持ち崩していく。",n:"新内の代表作「蘭蝶」です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"逢いたさ見たさに怖さを忘れ 暗い夜道を一人来る",n:"恋の一途さを詠んだ、都々逸の名句です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"三日見ぬ間の桜かな とはよく言うたもの",n:"世の変わりやすさを詠んだ、都々逸の一首です。"},
+{a:"都々逸",o:G,k:"唄の一節",t:"待つ身につらき置炬燵 主は今頃どこにゃら",n:"待つ女心を詠んだ都々逸です。"},
+{a:"端唄",o:G,k:"唄の一節",t:"夕暮れに眺めていたら 蛍が一つ二つ光った",n:"端唄「蛍」の一節です。"},
+{a:"端唄",o:G,k:"唄の一節",t:"さのさ さのさ 呼んで見ようか",n:"端唄「さのさ」の一節です。"},
+{a:"小唄",o:G,k:"由来",t:"歌沢や端唄の名手たちが、明治から大正にかけて独立させた短唄。",n:"小唄は、端唄や歌沢の流れから分かれました。"},
+{a:"活惚",o:G,k:"場面",t:"宴席で、滑稽な身振りをつけながら、囃し言葉に合わせて踊る。",n:"活惚は、笑いを誘う仕草が持ち味の唄と踊りです。"},
+{a:"大薩摩",o:G,k:"特徴",t:"「大薩摩張り」と呼ばれる勇ましい詞章を、太い声で読み上げるように語る。",n:"大薩摩は、力強い語りの浄瑠璃です。"},
+{a:"相撲甚句",o:G,k:"場面",t:"取組の間や打ち上げの席で、力士たちが土俵の周りで唄い踊る。",n:"相撲甚句は、相撲の場を盛り上げる唄です。"}
+];
+var TITLES=[];Q.forEach(function(q){if(!q.o&&TITLES.indexOf(q.a)<0)TITLES.push(q.a)});
+var order,i,score,done,res;
+function $(id){return document.getElementById(id)}
+function shuffle(a){a=a.slice();for(var j=a.length-1;j>0;j--){var r=Math.floor(Math.random()*(j+1));var t=a[j];a[j]=a[r];a[r]=t}return a}
+function show(){
+  var q=Q[order[i]];done=false;
+  $("no").textContent="第"+(i+1)+"問 / "+order.length+"問";
+  $("sc").textContent="正解 "+score;
+  $("kind").textContent=q.k;$("txt").textContent=q.t;
+  var KMAP={"詞章の一節":"k-ji","場面":"k-scene","由来":"k-yurai","特徴":"k-feature","形式":"k-form","楽器":"k-inst"};
+  $("clueBox").className="clue "+(KMAP[q.k]||"");
+  $("note").textContent="";$("next").classList.add("hide");
+  var opts=shuffle((q.o||TITLES).filter(function(x){return x!==q.a})).slice(0,3).concat(q.a);
+  var box=$("opts");box.innerHTML="";
+  shuffle(opts).forEach(function(t){
+    var b=document.createElement("button");b.className="opt";b.textContent=t;
+    b.onclick=function(){pick(b,t)};box.appendChild(b);
+  });
+}
+function mk(tag,cls,txt){var e=document.createElement(tag);e.className=cls;if(txt)e.textContent=txt;return e}
+function review(){
+  var box=$("review");box.innerHTML="";
+  res.forEach(function(r,n){
+    var q=r.q,d=mk("div","rv "+(r.ok?"ok":"ng"));
+    d.appendChild(mk("div","rvh",(r.ok?"◎ ":"× ")+"第"+(n+1)+"問　正解：「"+q.a+"」"));
+    d.appendChild(mk("div","rvc","手がかり："+q.t));
+    if(!r.ok)d.appendChild(mk("div","rvy","あなたの答え："+r.t));
+    d.appendChild(mk("div","rvc",q.n));
+    var key=q.o?(q.k==="唄の一節"?q.a+" "+q.t:q.a):"長唄 "+q.a;
+    var a=mk("a","","YouTubeで「"+key+"」を探す");
+    a.href="https://www.youtube.com/results?search_query="+encodeURIComponent(key);
+    a.target="_blank";a.rel="noopener noreferrer";
+    d.appendChild(a);box.appendChild(d);
+  });
+}
+function flash(){
+  var m=$("mark");m.classList.remove("show");void m.offsetWidth;m.classList.add("show");
+  setTimeout(function(){m.classList.remove("show")},1100);
+}
+function pick(b,t){
+  if(done)return;done=true;
+  var q=Q[order[i]],ok=t===q.a;
+  res.push({q:q,t:t,ok:ok});if(ok){score++;flash();}
+  Array.prototype.forEach.call($("opts").children,function(x){
+    x.disabled=true;
+    if(x.textContent===q.a)x.classList.add("ok");
+  });
+  if(!ok)b.classList.add("ng");
+  $("sc").textContent="正解 "+score;
+  $("note").textContent=ok?"正解です。"+q.n:"不正解。正解は「"+q.a+"」です。";
+  $("next").classList.add("hide");
+  setTimeout(function(){if(done)advance();},ok?900:1300);
+}
+
+
+function start(){order=shuffle(Q.map(function(_,x){return x})).slice(0,10);i=0;score=0;res=[];$("game").classList.remove("hide");$("end").classList.add("hide");show()}
+function advance(){
+  i++;
+  if(i>=order.length){
+    $("game").classList.add("hide");$("end").classList.remove("hide");
+    $("final").textContent=score+" / "+order.length;review();
+    $("msg").textContent=score===order.length?"全問正解です。見事な通の耳です。":score>=7?"よくできました。":"もう一度挑戦してみましょう。";
+  }else show();
+}
+$("next").onclick=advance;
+$("again").onclick=start;
+start();
+</script>
+</body>
+</html>
